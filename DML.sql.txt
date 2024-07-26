@@ -1,0 +1,47 @@
+-- Insertar Datos en Categoria
+INSERT INTO [dbo].[Categoria] ([descripcion], [esActivo])
+VALUES ('Bebidas', 1),
+       ('Snacks', 1),
+       ('Lácteos', 1),
+       ('Carnes', 1),
+       ('Verduras', 1),
+       ('Frutas', 1),
+       ('Panadería', 1);
+
+-- Insertar Datos en Rol
+INSERT INTO [dbo].[Rol] ([descripcion], [esActivo])
+VALUES ('Administrador', 1),
+       ('Cajero', 1),
+       ('Almacenero', 1);
+
+-- Insertar Datos en Usuario
+INSERT INTO [dbo].[Usuario] ([nombreApellidos], [correo], [idRol], [clave], [esActivo])
+VALUES ('Rigoberto Borjas', 'rigobertoborjas3@gmail.com', 1, '12345', 1),
+       ('Carlos Perez', 'rigobertoborjas4@hotmail.com', 2, '54321', 1),
+       ('Juana Martinez', 'juana.martinez@example.com', 3, '123456', 1);
+
+-- Insertar Datos en Producto
+INSERT INTO [dbo].[Producto] ([nombre], [idCategoria], [stock], [precio], [esActivo], [impuesto])
+VALUES ('Coca Cola', 1, 50, 1.50, 1, '15'),
+       ('Papitas', 2, 100, 0.99, 1, '10'),
+       ('Leche', 3, 30, 1.20, 1, '5'),
+       ('Pollo', 4, 20, 4.50, 1, '10'),
+       ('Tomates', 5, 60, 0.80, 1, '0'),
+       ('Manzanas', 6, 40, 0.75, 1, '0'),
+       ('Pan', 7, 50, 1.00, 1, '0');
+
+-- Insertar Datos en NumeroDocumento
+INSERT INTO [dbo].[NumeroDocumento] ([ultimo_Numero])
+VALUES (2001),
+       (2002),
+       (2003);
+
+-- Insertar Datos en Venta
+INSERT INTO [dbo].[Venta] ([numeroDocumento], [tipoPago], [correo], [isv], [subtotal], [total])
+VALUES ('12345', 'Efectivo', 'cliente@example.com', 15, 10.47, 12.00);
+
+-- Insertar Datos en DetalleVenta
+-- Supone que ya se han insertado datos en Venta con idVenta = 1 y productos con idProducto = 1 y 2
+INSERT INTO [dbo].[DetalleVenta] ([idVenta], [idProducto], [cantidad], [precio], [total])
+VALUES (1, 1, 5, 1.50, 7.50),
+       (1, 2, 3, 0.99, 2.97);

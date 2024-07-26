@@ -1,0 +1,15 @@
+Tomando en cuenta la manipulacion de la informacion de los sitemas inforaticos, 
+1- Politica de contraseñas
+1.1: una contraseña con un poco de todo, entre mas conbinaciones mejor. 
+1.2: Rutina de cambio de contraseña obligatoria, rondando los 90 o 60 días
+
+2- Politicas de Backup.
+2.1: Contar con las medidas contar con las medidas necesarias para salvaguardar la información.
+
+3- Política de uso de dispositivos
+3.1: control total de los dispositivos que se están utilizando dentro de las instalaciones
+3.1: control de los periféricos de entrada puertos USB
+
+4- política de respuesta a incidentes
+4.1: el personal debe estar capacitado con los conocimientos adecuados para seguir los procedimientos en respuesta a incidentes
+

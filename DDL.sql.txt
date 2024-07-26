@@ -1,0 +1,73 @@
+-- Crear Tabla Categoria
+CREATE TABLE [dbo].[Categoria] (
+    [idCategoria] INT IDENTITY (1, 1) NOT NULL,
+    [descripcion] VARCHAR (50) NOT NULL,
+    [esActivo]    BIT NOT NULL,
+    PRIMARY KEY CLUSTERED ([idCategoria] ASC)
+);
+
+-- Crear Tabla Rol
+CREATE TABLE [dbo].[Rol] (
+    [idRol]       INT IDENTITY (1, 1) NOT NULL,
+    [descripcion] VARCHAR (50) NOT NULL,
+    [esActivo]    BIT NOT NULL,
+    PRIMARY KEY CLUSTERED ([idRol] ASC)
+);
+
+-- Crear Tabla Usuario
+CREATE TABLE [dbo].[Usuario] (
+    [idUsuario]       INT IDENTITY (1, 1) NOT NULL,
+    [nombreApellidos] VARCHAR (100) NOT NULL,
+    [correo]          VARCHAR (100) NOT NULL,
+    [idRol]           INT NOT NULL,
+    [clave]           VARCHAR (50) NOT NULL,
+    [esActivo]        BIT NOT NULL,
+    PRIMARY KEY CLUSTERED ([idUsuario] ASC),
+    FOREIGN KEY ([idRol]) REFERENCES [dbo].[Rol]([idRol])
+);
+
+-- Crear Tabla Producto
+CREATE TABLE [dbo].[Producto] (
+    [idProducto]  INT IDENTITY (1, 1) NOT NULL,
+    [nombre]      VARCHAR (100) NOT NULL,
+    [idCategoria] INT NOT NULL,
+    [stock]       INT NOT NULL,
+    [precio]      DECIMAL (10, 2) NOT NULL,
+    [esActivo]    BIT NOT NULL,
+    [impuesto]    VARCHAR (10) NOT NULL,
+    PRIMARY KEY CLUSTERED ([idProducto] ASC),
+    FOREIGN KEY ([idCategoria]) REFERENCES [dbo].[Categoria]([idCategoria])
+);
+
+-- Crear Tabla NumeroDocumento
+CREATE TABLE [dbo].[NumeroDocumento] (
+    [idNumeroDocumento] INT IDENTITY (1, 1) NOT NULL,
+    [ultimo_Numero]     INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([idNumeroDocumento] ASC)
+);
+
+-- Crear Tabla Venta
+CREATE TABLE [dbo].[Venta] (
+    [idVenta]         INT             IDENTITY (1, 1) NOT NULL,
+    [numeroDocumento] VARCHAR (40)    NULL,
+    [tipoPago]        VARCHAR (50)    NULL,
+    [fechaRegistro]   DATETIME        DEFAULT (getdate()) NULL,
+    [correo]          VARCHAR (50)    NULL,
+    [isv]             INT             NULL,
+    [subtotal]        DECIMAL (10, 2) NULL,
+    [total]           DECIMAL (10, 2) NULL,
+    PRIMARY KEY CLUSTERED ([idVenta] ASC)
+);
+
+-- Crear Tabla DetalleVenta
+CREATE TABLE [dbo].[DetalleVenta] (
+    [idDetalleVenta] INT             IDENTITY (1, 1) NOT NULL,
+    [idVenta]        INT             NOT NULL,
+    [idProducto]     INT             NOT NULL,
+    [cantidad]       INT             NOT NULL,
+    [precio]         DECIMAL (10, 2) NOT NULL,
+    [total]          DECIMAL (10, 2) NOT NULL,
+    PRIMARY KEY CLUSTERED ([idDetalleVenta] ASC),
+    FOREIGN KEY ([idVenta]) REFERENCES [dbo].[Venta]([idVenta]),
+    FOREIGN KEY ([idProducto]) REFERENCES [dbo].[Producto]([idProducto])
+);
